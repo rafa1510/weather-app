@@ -1,3 +1,7 @@
-# template-repo
+# Weather
 
-Configures webpack, with production and development configs, and ESLint/Prettier
+## About
+
+Extremely simple weather app
+<br>
+[Check it out here](https://rafaelcestti.github.io/weather-app)
