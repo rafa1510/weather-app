@@ -24,10 +24,37 @@ async function getWeather(location) {
             throw new Error("No weather found for this location.");
         }
 
-        console.log(weather);
+        return weather;
     } catch (error) {
         console.log(error);
     }
 }
 
-getWeather("california");
+function main() {
+    const form = document.querySelector("form");
+    const input = document.querySelector("input");
+
+    // Grab the elements where we will store the user's requested data
+    const city = document.getElementById("city");
+    const temperature = document.getElementById("temperature");
+    const condition = document.getElementById("condition");
+    const image = document.getElementById("image");
+
+    // Search city when form is submitted
+    form.addEventListener("submit", (event) => {
+        getWeather(input.value).then((result) => {
+            city.textContent = result.location.name;
+            temperature.textContent = `${result.current.temp_f}F`;
+            condition.textContent = result.current.condition.text;
+            image.src = result.current.condition.icon;
+        });
+
+        // Reset form
+        form.reset();
+
+        // Return false so that the page doesn't get reloaded
+        return false;
+    });
+}
+
+main();
